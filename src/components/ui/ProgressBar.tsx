@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { ProgressBarProps } from "../../types";
+import { useLanguage } from "../../hooks/useLanguage";
 
 // Progress bar size variants
 const progressSizes = {
@@ -35,6 +36,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   className = "",
   ...props
 }) => {
+  const { t } = useLanguage();
+
   // Ensure value is within bounds
   const clampedValue = Math.max(0, Math.min(value, max));
   const percentage = Math.round((clampedValue / max) * 100);
@@ -55,7 +58,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     .filter(Boolean)
     .join(" ");
 
-  const progressLabel = label || `${percentage}% complete`;
+  const progressLabel =
+    label || `${percentage}% ${t("test.progress.complete", "complete")}`;
 
   return (
     <div className={`${className}`} {...props}>
@@ -64,7 +68,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           <span className="text-sm font-medium text-gray-700">
             {progressLabel}
           </span>
-          <span className="text-sm text-gray-500">{percentage}%</span>
+          <span className="text-sm text-gray-500">{100 - percentage}%</span>
         </div>
       )}
 
@@ -120,6 +124,8 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   label,
   className = "",
 }) => {
+  const { t } = useLanguage();
+
   const clampedValue = Math.max(0, Math.min(value, max));
   const percentage = (clampedValue / max) * 100;
 
@@ -128,7 +134,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   const strokeDasharray = circumference;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-  const progressLabel = label || `${Math.round(percentage)}% complete`;
+  const progressLabel =
+    label ||
+    `${Math.round(percentage)}% ${t("test.progress.complete", "complete")}`;
 
   // Get color class and convert to stroke color
   const colorMap = {

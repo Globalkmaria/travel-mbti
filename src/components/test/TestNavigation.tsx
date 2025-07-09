@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button, LoadingSpinner } from "../ui";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export interface TestNavigationProps {
   canGoPrevious: boolean;
@@ -32,6 +33,8 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
   disabled = false,
   showKeyboardHints = true,
 }) => {
+  const { t } = useLanguage();
+
   // Handle keyboard shortcuts
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -102,7 +105,10 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
             onClick={onPrevious}
             disabled={!canGoPrevious || disabled || isSubmitting}
             className="min-w-[120px]"
-            aria-label="Go to previous question"
+            aria-label={t(
+              "test.navigation.previous.aria",
+              "Go to previous question"
+            )}
           >
             <div className="flex items-center">
               <svg
@@ -118,7 +124,7 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Previous
+              {t("test.navigation.previous", "Previous")}
             </div>
           </Button>
         </motion.div>
@@ -132,17 +138,20 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
         >
           {!isAnswerSelected && !isLastQuestion && (
             <p className="text-sm text-gray-500" aria-live="polite">
-              Please select an answer to continue
+              {t(
+                "test.navigation.selectAnswer",
+                "Please select an answer to continue"
+              )}
             </p>
           )}
           {isAnswerSelected && !isLastQuestion && (
             <p className="text-sm text-green-600" aria-live="polite">
-              Ready to continue
+              {t("test.navigation.ready", "Ready to continue")}
             </p>
           )}
           {isLastQuestion && isAnswerSelected && (
             <p className="text-sm text-blue-600" aria-live="polite">
-              Ready to submit your test
+              {t("test.navigation.readySubmit", "Ready to submit your test")}
             </p>
           )}
         </motion.div>
@@ -161,16 +170,19 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
               disabled={!isAnswerSelected || disabled || isSubmitting}
               loading={isSubmitting}
               className="min-w-[120px]"
-              aria-label="Submit test and view results"
+              aria-label={t(
+                "test.navigation.submit.aria",
+                "Submit test and view results"
+              )}
             >
               {isSubmitting ? (
                 <>
                   <LoadingSpinner size="sm" color="white" className="mr-2" />
-                  Submitting...
+                  {t("test.navigation.submitting", "Submitting...")}
                 </>
               ) : (
                 <div className="flex items-center justify-end">
-                  Submit Test
+                  {t("test.navigation.submit", "Submit Test")}
                   <svg
                     className="w-4 h-4 ml-2"
                     fill="none"
@@ -196,10 +208,10 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
                 !isAnswerSelected || !canGoNext || disabled || isSubmitting
               }
               className="min-w-[120px]"
-              aria-label="Go to next question"
+              aria-label={t("test.navigation.next.aria", "Go to next question")}
             >
-              <div className="flex items-center justify-end">
-                Next
+              <div className="flex items-center">
+                {t("test.navigation.next", "Next")}
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
@@ -219,56 +231,27 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
         </motion.div>
       </div>
 
-      {/* Keyboard Shortcuts Hint */}
-      {showKeyboardHints && !isSubmitting && (
+      {/* Keyboard Navigation Hints */}
+      {showKeyboardHints && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.6 }}
-          className="text-xs text-gray-400 text-center space-y-1"
-          role="region"
-          aria-label="Keyboard shortcuts"
+          transition={{ duration: 0.3, delay: 0.5 }}
+          className="text-center text-xs text-gray-400 space-y-1"
         >
           <p>
-            Keyboard shortcuts:
-            <span className="ml-2">
-              <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
-                Ctrl
-              </kbd>{" "}
-              +
-              <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs ml-1">
-                ←
-              </kbd>{" "}
-              Previous
-            </span>
-            <span className="ml-2">
-              <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
-                Ctrl
-              </kbd>{" "}
-              +
-              <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs ml-1">
-                →
-              </kbd>{" "}
-              Next
-            </span>
-            <span className="ml-2">
-              <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
-                Enter
-              </kbd>{" "}
-              Continue
-            </span>
+            {t("test.navigation.hints.keyboard", "Keyboard shortcuts:")}
+            <span className="mx-2">←</span>
+            {t("test.navigation.hints.previous", "Previous")}
+            <span className="mx-2">•</span>
+            <span className="mx-2">→</span>
+            {t("test.navigation.hints.next", "Next")}
+            <span className="mx-2">•</span>
+            <span className="mx-2">Enter</span>
+            {t("test.navigation.hints.continue", "Continue")}
           </p>
         </motion.div>
       )}
-
-      {/* Progress Summary for Screen Readers */}
-      <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {isLastQuestion && isAnswerSelected
-          ? "Ready to submit test. Press Enter or click Submit Test button."
-          : isAnswerSelected
-          ? "Answer selected. Press Enter or click Next to continue."
-          : "Please select an answer to continue."}
-      </div>
     </motion.div>
   );
 };

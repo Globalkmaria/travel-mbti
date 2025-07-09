@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { MBTIType } from "../../types";
 import { useShare } from "../../hooks/useShare";
+import { useLanguage } from "../../hooks/useLanguage";
 import { Button } from "../ui/Button";
 
 interface ShareSectionProps {
@@ -13,6 +14,7 @@ interface ShareSectionProps {
 }
 
 export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
+  const { t } = useLanguage();
   const {
     share,
     isSharing,
@@ -31,16 +33,25 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
     if (lastShareResult) {
       if (lastShareResult.success) {
         if (lastShareResult.platform === "clipboard") {
-          setFeedbackMessage("✅ Link copied to clipboard!");
+          setFeedbackMessage(
+            t("share.feedback.linkCopied", "✅ Link copied to clipboard!")
+          );
         } else if (lastShareResult.platform === "web") {
-          setFeedbackMessage("✅ Shared successfully!");
+          setFeedbackMessage(
+            t("share.feedback.shareSuccess", "✅ Shared successfully!")
+          );
         }
       } else {
         if (lastShareResult.error?.includes("cancelled")) {
           // Don't show error for user cancellation
           return;
         }
-        setFeedbackMessage("❌ Sharing failed. Please try again.");
+        setFeedbackMessage(
+          t(
+            "share.feedback.shareFailed",
+            "❌ Sharing failed. Please try again."
+          )
+        );
       }
 
       setShowFeedback(true);
@@ -53,7 +64,7 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
 
       return () => clearTimeout(timer);
     }
-  }, [lastShareResult, clearLastResult]);
+  }, [lastShareResult, clearLastResult, t]);
 
   // Main share handler with smart method selection
   const handleShare = async () => {
@@ -77,10 +88,13 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
       {/* Section Header */}
       <div className="text-center mb-6">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-          Share Your Travel Style
+          {t("share.title", "Share Your Travel Style")}
         </h3>
         <p className="text-gray-600 dark:text-gray-300 text-sm">
-          Let your friends discover their MBTI travel personality too!
+          {t(
+            "share.subtitle",
+            "Let your friends discover their MBTI travel personality too!"
+          )}
         </p>
       </div>
 
@@ -114,11 +128,13 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
         aria-label={`Share your ${mbtiType.code} travel style`}
       >
         {isSharing ? (
-          "Sharing..."
+          t("share.buttons.sharing", "Sharing...")
         ) : (
           <>
             <span className="mr-2">{canUseWebShare ? "📱" : "📋"}</span>
-            {canUseWebShare ? "Share Results" : "Copy Link"}
+            {canUseWebShare
+              ? t("share.buttons.shareResults", "Share Results")
+              : t("share.buttons.copyLink", "Copy Link")}
           </>
         )}
       </Button>
@@ -143,8 +159,10 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
       {/* Additional Info */}
       <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
         <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-          Your shared link includes your personality type results but no
-          personal data
+          {t(
+            "share.privacy",
+            "Your shared link includes your personality type results but no personal data"
+          )}
         </p>
       </div>
     </motion.div>

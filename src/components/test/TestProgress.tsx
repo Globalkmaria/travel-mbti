@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ProgressBar } from "../ui";
 import type { TestProgress as TestProgressType } from "../../types";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export interface TestProgressProps {
   progress: TestProgressType;
@@ -29,6 +30,8 @@ export const TestProgress: React.FC<TestProgressProps> = ({
     progressPercentage,
     answeredQuestions,
   } = progress;
+
+  const { t } = useLanguage();
 
   // Format percentage for display
   const formattedPercentage = Math.round(progressPercentage);
@@ -60,7 +63,7 @@ export const TestProgress: React.FC<TestProgressProps> = ({
               className="flex items-center space-x-2"
             >
               <span className="text-sm font-medium text-gray-600">
-                Question
+                {t("test.progress.question", "Question")}
               </span>
               <span className="text-lg font-bold text-gray-800">
                 {currentQuestion}
@@ -80,7 +83,9 @@ export const TestProgress: React.FC<TestProgressProps> = ({
               <span className="text-sm font-medium text-primary">
                 {formattedPercentage}%
               </span>
-              <span className="text-xs text-gray-500">complete</span>
+              <span className="text-xs text-gray-500">
+                {t("test.progress.complete", "complete")}
+              </span>
             </motion.div>
           )}
         </div>
@@ -102,7 +107,10 @@ export const TestProgress: React.FC<TestProgressProps> = ({
           showLabel={variant === "detailed"}
           label={
             variant === "detailed"
-              ? `${formattedPercentage}% Complete`
+              ? `${formattedPercentage}% ${t(
+                  "test.progress.complete",
+                  "complete"
+                )}`
               : undefined
           }
           className="w-full"
@@ -120,17 +128,19 @@ export const TestProgress: React.FC<TestProgressProps> = ({
           {/* Answered vs Remaining */}
           <div className="flex justify-between text-xs text-gray-600">
             <span>
-              Answered: <strong>{answeredQuestions}</strong>
+              {t("test.progress.answered", "Answered")}:{" "}
+              <strong>{answeredQuestions}</strong>
             </span>
             <span>
-              Remaining: <strong>{totalQuestions - answeredQuestions}</strong>
+              {t("test.progress.remaining", "Remaining")}:{" "}
+              <strong>{totalQuestions - answeredQuestions}</strong>
             </span>
           </div>
 
           {/* Estimated Time */}
           <div className="text-xs text-gray-500 text-center">
-            Estimated time remaining:{" "}
-            {Math.ceil((totalQuestions - currentQuestion + 1) * 0.5)} minutes
+            {Math.ceil((totalQuestions - currentQuestion + 1) * 0.5)}{" "}
+            {t("test.progress.minutes", "minutes")}
           </div>
         </motion.div>
       )}

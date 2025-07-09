@@ -9,6 +9,7 @@ import {
   ShareSection,
 } from "../components/results";
 import { getMBTIType } from "../data";
+import { useLanguage } from "../hooks/useLanguage";
 import type { MBTICode, DimensionScore } from "../types";
 
 // Animation variants
@@ -53,6 +54,7 @@ interface MBTIResult {
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t } = useLanguage();
 
   const [result, setResult] = useState<MBTIResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -123,7 +125,12 @@ export const ResultsPage: React.FC = () => {
             };
             setResult(mockResult);
           } else {
-            setError("Invalid personality type in shared link.");
+            setError(
+              t(
+                "results.error.invalidType",
+                "Invalid personality type in shared link."
+              )
+            );
           }
           setIsLoading(false);
           return;
@@ -137,19 +144,27 @@ export const ResultsPage: React.FC = () => {
           setResult(parsedResult);
         } else {
           setError(
-            "No test results found. Please complete the personality test first."
+            t(
+              "results.error.noResults",
+              "No test results found. Please complete the personality test first."
+            )
           );
         }
       } catch (err) {
         console.error("Error loading results:", err);
-        setError("Failed to load your results. Please try again.");
+        setError(
+          t(
+            "results.error.loadFailed",
+            "Failed to load your results. Please try again."
+          )
+        );
       } finally {
         setIsLoading(false);
       }
     };
 
     loadResult();
-  }, [searchParams]);
+  }, [searchParams, t]);
 
   // Handle retaking the test
   const handleRetakeTest = () => {
@@ -173,10 +188,13 @@ export const ResultsPage: React.FC = () => {
         <Card className="p-8 text-center">
           <LoadingSpinner size="lg" className="mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
-            Loading Your Results
+            {t("results.loading.title", "Loading Your Results")}
           </h2>
           <p className="text-gray-600">
-            Analyzing your personality and travel preferences...
+            {t(
+              "results.loading.message",
+              "Analyzing your personality and travel preferences..."
+            )}
           </p>
         </Card>
       </motion.div>
@@ -196,18 +214,21 @@ export const ResultsPage: React.FC = () => {
         <Card className="p-8 text-center max-w-md">
           <div className="text-6xl mb-4">🚫</div>
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
-            Results Not Found
+            {t("results.error.title", "Results Not Found")}
           </h2>
           <p className="text-gray-600 mb-6">
             {error ||
-              "We couldn't find your test results. Please take the test again."}
+              t(
+                "results.error.message",
+                "We couldn't find your test results. Please take the test again."
+              )}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button variant="primary" onClick={handleRetakeTest}>
-              Take Test Again
+              {t("results.takeTestAgain", "Take Test Again")}
             </Button>
             <Button variant="outline" onClick={() => navigate("/")}>
-              Go Home
+              {t("common.goHome", "Go Home")}
             </Button>
           </div>
         </Card>
@@ -236,17 +257,23 @@ export const ResultsPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               🎉{" "}
               {isSharedResult
-                ? "Shared Travel Personality"
-                : "Your Travel Personality"}
+                ? t("results.header.sharedTitle", "Shared Travel Personality")
+                : t("results.header.personalTitle", "Your Travel Personality")}
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {isSharedResult
-                ? "Someone shared their MBTI travel personality with you! See how this personality type influences travel preferences and style."
-                : "Discover how your MBTI personality type influences your travel preferences and style"}
+                ? t(
+                    "results.header.sharedSubtitle",
+                    "Someone shared their MBTI travel personality with you! See how this personality type influences travel preferences and style."
+                  )
+                : t(
+                    "results.header.personalSubtitle",
+                    "Discover how your MBTI personality type influences your travel preferences and style"
+                  )}
             </p>
             {isSharedResult && (
               <div className="mt-4 inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-                📤 Shared Result
+                📤 {t("results.shared.indicator", "Shared Result")}
               </div>
             )}
           </motion.header>
@@ -282,6 +309,7 @@ export const ResultsPage: React.FC = () => {
             <motion.div variants={itemVariants}>
               <TravelRecommendations
                 travelStyle={mbtiType.travelStyle}
+                mbtiCode={mbtiType.code as MBTICode}
                 showAllSections={true}
                 animateOnScroll={true}
                 className="h-full"
@@ -303,7 +331,7 @@ export const ResultsPage: React.FC = () => {
                 onClick={handleRetakeTest}
                 className="min-w-[140px]"
               >
-                🔄 Retake Test
+                🔄 {t("results.retakeTest", "Retake Test")}
               </Button>
 
               <Button
@@ -312,7 +340,7 @@ export const ResultsPage: React.FC = () => {
                 onClick={() => navigate("/")}
                 className="min-w-[140px]"
               >
-                🏠 Go Home
+                🏠 {t("common.goHome", "Go Home")}
               </Button>
             </div>
 
@@ -324,20 +352,27 @@ export const ResultsPage: React.FC = () => {
               <Card className="p-6 bg-white/50 border-0">
                 <div className="text-center space-y-3">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Understanding Your Results
+                    {t(
+                      "results.understanding.title",
+                      "Understanding Your Results"
+                    )}
                   </h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    Your MBTI travel personality type is based on your responses
-                    to {result.dimensionScores.length * 4} questions across four
-                    key dimensions. This analysis helps you understand your
-                    natural travel preferences, from destination choices to
-                    planning styles, enabling you to make more informed travel
-                    decisions that align with your personality.
+                    {t(
+                      "results.understanding.description",
+                      "Your MBTI travel personality type is based on your responses to questions across four key dimensions. This analysis helps you understand your natural travel preferences, from destination choices to planning styles, enabling you to make more informed travel decisions that align with your personality."
+                    )}
                   </p>
                   <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
-                    <span>Confidence Level: {result.confidence}%</span>
+                    <span>
+                      {t("results.confidence.label", "Confidence Level")}:{" "}
+                      {result.confidence}%
+                    </span>
                     <span>•</span>
-                    <span>Completed: {new Date().toLocaleDateString()}</span>
+                    <span>
+                      {t("results.completed.label", "Completed")}:{" "}
+                      {new Date().toLocaleDateString()}
+                    </span>
                   </div>
                 </div>
               </Card>

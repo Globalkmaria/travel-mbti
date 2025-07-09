@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import type { MBTIType } from "../../types";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export interface CharacterDisplayProps {
   mbtiType: MBTIType;
@@ -26,6 +27,8 @@ export const CharacterDisplay: React.FC<CharacterDisplayProps> = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+
+  const { t } = useLanguage();
 
   // Size configurations
   const sizeClasses = {
@@ -177,10 +180,14 @@ export const CharacterDisplay: React.FC<CharacterDisplayProps> = ({
           className="text-center mt-3"
         >
           <h3 className="font-semibold text-gray-800 text-sm">
-            {mbtiType.name}
+            {t(`questions.mbtiTypes.${mbtiType.code}.name`)}
           </h3>
           <p className="text-xs text-gray-600 mt-1 max-w-[200px] mx-auto leading-tight">
-            {mbtiType.description.slice(0, 60)}...
+            {t(
+              `questions.mbtiTypes.${mbtiType.code}.description`,
+              mbtiType.description
+            ).slice(0, 60)}
+            ...
           </p>
         </motion.div>
       )}

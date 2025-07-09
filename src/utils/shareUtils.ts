@@ -4,6 +4,23 @@
 import type { MBTIType, ShareData, ShareResult } from "../types";
 
 /**
+ * Translation function type
+ */
+type TranslationFunction = (key: string, fallback?: string) => string;
+
+/**
+ * Template replacement helper for translation strings
+ */
+function replaceTemplate(
+  template: string,
+  variables: Record<string, string>
+): string {
+  return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+    return variables[key] || match;
+  });
+}
+
+/**
  * Checks if the Web Share API is supported in the current browser
  */
 export function isWebShareSupported(): boolean {
@@ -13,9 +30,24 @@ export function isWebShareSupported(): boolean {
 /**
  * Generates engaging share text based on MBTI type
  */
-export function generateShareText(mbtiType: MBTIType): string {
-  const { code, name } = mbtiType;
-  return `🧳 I'm a ${code} (${name}) traveler! Discover your MBTI travel style and find out what kind of adventurer you are! ✈️`;
+export function generateShareText(
+  mbtiType: MBTIType,
+  t?: TranslationFunction
+): string {
+  const { code } = mbtiType;
+
+  if (t) {
+    // Use translated MBTI type name
+    const translatedName = t(`questions.mbtiTypes.${code}.name`, mbtiType.name);
+    const template = t(
+      "share.data.text",
+      "🧳 I'm a {{code}} ({{name}}) traveler! Discover your MBTI travel style and find out what kind of adventurer you are! ✈️"
+    );
+    return replaceTemplate(template, { code, name: translatedName });
+  }
+
+  // Fallback to English
+  return `🧳 I'm a ${code} (${mbtiType.name}) traveler! Discover your MBTI travel style and find out what kind of adventurer you are! ✈️`;
 }
 
 /**
@@ -70,12 +102,35 @@ export async function copyToClipboard(text: string): Promise<boolean> {
 /**
  * Creates comprehensive share data object
  */
-export function createShareData(mbtiType: MBTIType): ShareData {
-  const shareText = generateShareText(mbtiType);
+export function createShareData(
+  mbtiType: MBTIType,
+  t?: TranslationFunction
+): ShareData {
+  const shareText = generateShareText(mbtiType, t);
   const shareUrl = createShareableURL(mbtiType.code);
 
+  let title: string;
+  if (t) {
+    // Use translated MBTI type name
+    const translatedName = t(
+      `questions.mbtiTypes.${mbtiType.code}.name`,
+      mbtiType.name
+    );
+    const template = t(
+      "share.data.title",
+      "MBTI Travel Style: {{code}} - {{name}}"
+    );
+    title = replaceTemplate(template, {
+      code: mbtiType.code,
+      name: translatedName,
+    });
+  } else {
+    // Fallback to English
+    title = `MBTI Travel Style: ${mbtiType.code} - ${mbtiType.name}`;
+  }
+
   return {
-    title: `MBTI Travel Style: ${mbtiType.code} - ${mbtiType.name}`,
+    title,
     text: shareText,
     url: shareUrl,
     personalityType: mbtiType.code,

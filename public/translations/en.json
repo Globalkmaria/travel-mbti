@@ -1,0 +1,844 @@
+{
+  "app": {
+    "title": "MBTI Travel Style Analysis",
+    "description": "Discover your personality-based travel recommendations"
+  },
+  "home": {
+    "hero": {
+      "title": "Discover Your",
+      "titleHighlight": "Travel Personality",
+      "subtitle": "Take our MBTI-based personality test and unlock personalized travel recommendations that match your unique style and preferences.",
+      "cta": "🎯 Start Your Journey",
+      "subtext": "Takes 5-10 minutes • 18 questions • Free & private"
+    },
+    "features": {
+      "title": "Why Take the Test?",
+      "subtitle": "Our MBTI-based analysis provides deep insights into your travel personality, helping you make better vacation decisions and discover new experiences.",
+      "items": [
+        {
+          "icon": "🧠",
+          "title": "Personality Analysis",
+          "description": "Discover your MBTI type through scientifically-designed questions."
+        },
+        {
+          "icon": "✈️",
+          "title": "Travel Recommendations",
+          "description": "Get personalized travel suggestions that match your unique personality traits."
+        },
+        {
+          "icon": "🎯",
+          "title": "Better Decisions",
+          "description": "Make informed travel choices that align with your natural preferences."
+        }
+      ]
+    }
+  },
+  "test": {
+    "progress": {
+      "question": "Question",
+      "complete": "Complete",
+      "answered": "Answered",
+      "remaining": "Remaining",
+      "estimatedTime": "Estimated time remaining",
+      "minutes": "minutes",
+      "progress": "Progress"
+    },
+    "title": "MBTI Travel Personality Test",
+    "header": {
+      "title": "Travel Personality Assessment",
+      "subtitle": "Answer honestly to get the most accurate results"
+    },
+    "loading": "Loading questions...",
+    "question": {
+      "label": "Question",
+      "selectHint": "Please select the option that best describes you"
+    },
+    "navigation": {
+      "previous": "← Previous",
+      "next": "Next →",
+      "submit": "Complete Test",
+      "submitting": "Calculating your results...",
+      "keyboardHints": "Use arrow keys to navigate",
+      "selectAnswer": "Please select an answer before proceeding"
+    },
+    "error": {
+      "title": "Unable to Load Test",
+      "message": "There was an error loading the test questions. Please try again.",
+      "retry": "Try Again"
+    }
+  },
+  "questions": {
+    "q1": {
+      "text": "When planning a trip, you prefer to:",
+      "answers": {
+        "q1a1": "Research and book group tours with lots of social activities",
+        "q1a2": "Plan some group activities but also ensure quiet time alone",
+        "q1a3": "Focus on solo experiences or very small, intimate groups"
+      }
+    },
+    "q2": {
+      "text": "At your ideal travel destination, you would:",
+      "answers": {
+        "q2a1": "Seek out bustling markets, festivals, and social hotspots",
+        "q2a2": "Balance popular attractions with quieter, less crowded spots",
+        "q2a3": "Prefer secluded beaches, quiet museums, or peaceful nature walks"
+      }
+    },
+    "q3": {
+      "text": "When meeting other travelers, you typically:",
+      "answers": {
+        "q3a1": "Easily strike up conversations and make new friends",
+        "q3a2": "Are friendly but selective about who you spend time with",
+        "q3a3": "Prefer to observe and connect with just a few people deeply"
+      }
+    },
+    "q4": {
+      "text": "After a full day of traveling and sightseeing, you:",
+      "answers": {
+        "q4a1": "Feel energized and want to explore nightlife or social venues",
+        "q4a2": "Enjoy a good meal and some social time before resting",
+        "q4a3": "Need quiet time alone to recharge and process the day"
+      }
+    },
+    "q5": {
+      "text": "When choosing a destination, what appeals to you most?",
+      "answers": {
+        "q5a1": "Concrete experiences: great food, comfortable hotels, proven attractions",
+        "q5a2": "A mix of must-see sights and opportunities for discovery",
+        "q5a3": "The potential for unique experiences and hidden meanings"
+      }
+    },
+    "q6": {
+      "text": "Your ideal travel guide would:",
+      "answers": {
+        "q6a1": "Provide detailed facts, practical tips, and tried-and-true recommendations",
+        "q6a2": "Offer both essential information and some creative suggestions",
+        "q6a3": "Inspire with stories, possibilities, and unconventional perspectives"
+      }
+    },
+    "q7": {
+      "text": "When exploring a new city, you prefer to:",
+      "answers": {
+        "q7a1": "Follow recommended routes and visit all the main landmarks",
+        "q7a2": "See key sights but also allow time for spontaneous discoveries",
+        "q7a3": "Wander freely and see where your curiosity leads you"
+      }
+    },
+    "q8": {
+      "text": "What type of cultural experience excites you most?",
+      "answers": {
+        "q8a1": "Hands-on workshops, cooking classes, or traditional crafts",
+        "q8a2": "A combination of interactive experiences and learning opportunities",
+        "q8a3": "Abstract art galleries, philosophical discussions, or spiritual retreats"
+      }
+    },
+    "q9": {
+      "text": "When documenting your travels, you focus on:",
+      "answers": {
+        "q9a1": "Specific details: what you ate, where you stayed, practical observations",
+        "q9a2": "Both concrete memories and emotional impressions",
+        "q9a3": "The deeper meaning, connections, and transformative insights"
+      }
+    },
+    "q10": {
+      "text": "When choosing between two travel options, you typically:",
+      "answers": {
+        "q10a1": "Compare costs, benefits, and logical pros and cons",
+        "q10a2": "Consider both practical factors and how each option feels",
+        "q10a3": "Go with what feels right and aligns with your values"
+      }
+    },
+    "q11": {
+      "text": "If something goes wrong during your trip, you:",
+      "answers": {
+        "q11a1": "Analyze the problem objectively and find the most efficient solution",
+        "q11a2": "Address the practical issues while considering everyone's feelings",
+        "q11a3": "Focus on maintaining harmony and ensuring everyone feels supported"
+      }
+    },
+    "q12": {
+      "text": "When choosing travel companions, you prioritize:",
+      "answers": {
+        "q12a1": "People who are reliable, punctual, and share similar travel goals",
+        "q12a2": "A balance of compatibility and shared interests",
+        "q12a3": "People you connect with emotionally and who share your values"
+      }
+    },
+    "q13": {
+      "text": "Your approach to travel budgeting is:",
+      "answers": {
+        "q13a1": "Methodical and data-driven, optimizing value for money",
+        "q13a2": "Practical but flexible based on circumstances",
+        "q13a3": "Flexible and values-based, spending on what matters to you personally"
+      }
+    },
+    "q14": {
+      "text": "When interacting with locals, you're most interested in:",
+      "answers": {
+        "q14a1": "Learning about systems, economics, and how things work",
+        "q14a2": "Understanding both cultural systems and personal stories",
+        "q14a3": "Personal stories, emotions, and human connections"
+      }
+    },
+    "q15": {
+      "text": "Your ideal travel style involves:",
+      "answers": {
+        "q15a1": "Detailed itineraries planned well in advance",
+        "q15a2": "A rough framework with some flexibility built in",
+        "q15a3": "Minimal planning and maximum spontaneity"
+      }
+    },
+    "q16": {
+      "text": "When your travel plans get disrupted, you:",
+      "answers": {
+        "q16a1": "Feel stressed and work quickly to restore order and structure",
+        "q16a2": "Adapt reasonably well while trying to maintain some structure",
+        "q16a3": "See it as an adventure and opportunity for unexpected discoveries"
+      }
+    },
+    "q17": {
+      "text": "Your packing style is:",
+      "answers": {
+        "q17a1": "Organized lists, everything planned and packed days in advance",
+        "q17a2": "Generally organized but might pack some things last minute",
+        "q17a3": "Last-minute packing, bringing what feels right in the moment"
+      }
+    },
+    "q18": {
+      "text": "During your trip, you prefer to:",
+      "answers": {
+        "q18a1": "Stick to your planned schedule and check things off your list",
+        "q18a2": "Follow your plan but remain open to interesting opportunities",
+        "q18a3": "Keep your schedule flexible and adapt based on what you discover"
+      }
+    },
+    "mbtiTypes": {
+      "ENTJ": {
+        "name": "The Commander",
+        "description": "Strategic and goal-oriented travelers who love luxury experiences and efficient planning.",
+        "characteristics": [
+          "Strategic planning",
+          "Confident leadership",
+          "Efficient execution",
+          "Goal achievement",
+          "Resource optimization"
+        ]
+      },
+      "ENTP": {
+        "name": "The Debater",
+        "description": "Innovative and spontaneous travelers who thrive on new ideas and unexpected discoveries.",
+        "characteristics": [
+          "Creative exploration",
+          "Spontaneous adventures",
+          "Intellectual curiosity",
+          "Social networking",
+          "Innovation seeking"
+        ]
+      },
+      "INTJ": {
+        "name": "The Architect",
+        "description": "Independent and strategic travelers who prefer well-researched, meaningful journeys.",
+        "characteristics": [
+          "Strategic research",
+          "Independent exploration",
+          "Meaningful experiences",
+          "Efficient planning",
+          "Knowledge seeking"
+        ]
+      },
+      "INTP": {
+        "name": "The Thinker",
+        "description": "Curious and analytical travelers who enjoy exploring ideas and unconventional paths.",
+        "characteristics": [
+          "Analytical exploration",
+          "Curiosity-driven",
+          "Unconventional paths",
+          "Deep thinking",
+          "Flexible approach"
+        ]
+      },
+      "ENFJ": {
+        "name": "The Protagonist",
+        "description": "Inspiring and people-focused travelers who create meaningful connections and experiences.",
+        "characteristics": [
+          "People connection",
+          "Cultural immersion",
+          "Inspiring others",
+          "Meaningful experiences",
+          "Group harmony"
+        ]
+      },
+      "ENFP": {
+        "name": "The Campaigner",
+        "description": "Enthusiastic and creative travelers who seek authentic experiences and human connections.",
+        "characteristics": [
+          "Enthusiastic exploration",
+          "Authentic experiences",
+          "Creative adventures",
+          "Human connections",
+          "Spontaneous fun"
+        ]
+      },
+      "INFJ": {
+        "name": "The Advocate",
+        "description": "Visionary and purposeful travelers who seek transformative and meaningful journey experiences.",
+        "characteristics": [
+          "Purposeful travel",
+          "Transformative experiences",
+          "Deep reflection",
+          "Meaningful connections",
+          "Spiritual exploration"
+        ]
+      },
+      "INFP": {
+        "name": "The Mediator",
+        "description": "Creative and values-driven travelers who seek authentic and personally meaningful experiences.",
+        "characteristics": [
+          "Values-driven choices",
+          "Authentic experiences",
+          "Creative exploration",
+          "Personal growth",
+          "Emotional connections"
+        ]
+      },
+      "ESTJ": {
+        "name": "The Executive",
+        "description": "Organized and efficient travelers who prefer structured itineraries and reliable experiences.",
+        "characteristics": [
+          "Structured planning",
+          "Efficient organization",
+          "Reliable experiences",
+          "Traditional preferences",
+          "Group coordination"
+        ]
+      },
+      "ESTP": {
+        "name": "The Entertainer",
+        "description": "Energetic and spontaneous travelers who love adventure and hands-on experiences.",
+        "characteristics": [
+          "Spontaneous adventures",
+          "High energy",
+          "Hands-on experiences",
+          "Social interaction",
+          "Thrill seeking"
+        ]
+      },
+      "ISTJ": {
+        "name": "The Logistician",
+        "description": "Methodical and reliable travelers who prefer well-planned, traditional travel experiences.",
+        "characteristics": [
+          "Methodical planning",
+          "Reliable preferences",
+          "Traditional experiences",
+          "Careful preparation",
+          "Detailed organization"
+        ]
+      },
+      "ISTP": {
+        "name": "The Virtuoso",
+        "description": "Practical and adaptable travelers who enjoy hands-on exploration and mechanical interests.",
+        "characteristics": [
+          "Practical exploration",
+          "Hands-on learning",
+          "Mechanical interests",
+          "Adaptable approach",
+          "Independent travel"
+        ]
+      },
+      "ESFJ": {
+        "name": "The Consul",
+        "description": "Social and caring travelers who prioritize group harmony and cultural experiences.",
+        "characteristics": [
+          "Group harmony",
+          "Cultural appreciation",
+          "Social connections",
+          "Caring approach",
+          "Traditional values"
+        ]
+      },
+      "ESFP": {
+        "name": "The Entertainer",
+        "description": "Fun-loving and spontaneous travelers who seek exciting and social travel experiences.",
+        "characteristics": [
+          "Fun-loving approach",
+          "Spontaneous decisions",
+          "Social experiences",
+          "Excitement seeking",
+          "People-focused"
+        ]
+      },
+      "ISFJ": {
+        "name": "The Protector",
+        "description": "Thoughtful and caring travelers who prefer safe, comfortable, and meaningful experiences.",
+        "characteristics": [
+          "Thoughtful planning",
+          "Safety-conscious",
+          "Comfortable experiences",
+          "Caring approach",
+          "Meaningful connections"
+        ]
+      },
+      "ISFP": {
+        "name": "The Adventurer",
+        "description": "Gentle and artistic travelers who seek beautiful, authentic, and personally meaningful experiences.",
+        "characteristics": [
+          "Artistic appreciation",
+          "Gentle exploration",
+          "Authentic experiences",
+          "Personal meaning",
+          "Beautiful destinations"
+        ]
+      }
+    }
+  },
+  "results": {
+    "title": "Your Travel Personality Results",
+    "retakeTest": "Retake Test",
+    "takeTestAgain": "Take Test Again",
+    "characteristics": {
+      "title": "Key Characteristics"
+    },
+    "dimensionAnalysis": {
+      "title": "Dimension Analysis"
+    },
+    "header": {
+      "personalTitle": "Your Travel Personality",
+      "personalSubtitle": "Discover how your MBTI personality type influences your travel preferences and style",
+      "sharedTitle": "Shared Travel Personality",
+      "sharedSubtitle": "Someone shared their MBTI travel personality with you! See how this personality type influences travel preferences and style."
+    },
+    "shared": {
+      "indicator": "Shared Result"
+    },
+    "loading": {
+      "title": "Loading Your Results",
+      "message": "Analyzing your personality and travel preferences..."
+    },
+    "error": {
+      "title": "Results Not Found",
+      "message": "We couldn't find your test results. Please take the test again.",
+      "noResults": "No test results found. Please complete the personality test first.",
+      "loadFailed": "Failed to load your results. Please try again.",
+      "invalidType": "Invalid personality type in shared link."
+    },
+    "confidence": {
+      "label": "Confidence Level",
+      "high": "High Confidence",
+      "moderate": "Moderate Confidence",
+      "low": "Low Confidence"
+    },
+    "completed": {
+      "label": "Completed"
+    },
+    "strength": {
+      "very clear": "Very Clear",
+      "clear": "Clear",
+      "moderate": "Moderate",
+      "slight": "Slight"
+    },
+    "understanding": {
+      "title": "Understanding Your Results",
+      "description": "Your MBTI travel personality type is based on your responses to questions across four key dimensions. This analysis helps you understand your natural travel preferences, from destination choices to planning styles, enabling you to make more informed travel decisions that align with your personality."
+    },
+    "accessibility": {
+      "typeDescription": "Your personality type is",
+      "confidence": "Result confidence is",
+      "preference": "preference is",
+      "strength": "with",
+      "strengthLabel": "strength"
+    }
+  },
+  "travelRecommendations": {
+    "header": {
+      "title": "✈️ Your Travel Style",
+      "description": "Based on your personality type, here are personalized travel recommendations that align with your preferences and style."
+    },
+    "motivations": {
+      "title": "🎒 Travel Motivations"
+    },
+    "destinations": {
+      "title": "🌍 Preferred Destinations"
+    },
+    "activities": {
+      "title": "🎯 Favorite Activities"
+    },
+    "planning": {
+      "title": "📋 Planning Style"
+    },
+    "budget": {
+      "title": "💰 Budget Approach"
+    },
+    "accommodation": {
+      "title": "🏨 Accommodation Preference"
+    },
+    "companions": {
+      "title": "👥 Travel Companions"
+    },
+    "showMore": "See all travel recommendations in your full results",
+    "accessibility": {
+      "description": "Travel recommendations section displaying personalized preferences based on your personality type."
+    }
+  },
+  "travelStyles": {
+    "ENTJ": {
+      "motivations": ["Luxury", "Business travel", "Achievement-oriented"],
+      "destinations": [
+        "Major cities",
+        "Business hubs",
+        "Prestigious locations"
+      ],
+      "activities": [
+        "Networking events",
+        "Executive tours",
+        "Cultural landmarks",
+        "Fine dining"
+      ],
+      "planningStyle": "Highly structured with detailed itineraries",
+      "budgetApproach": "Premium budget for quality experiences",
+      "accommodationStyle": "Luxury hotels and executive suites",
+      "travelCompanions": ["Business associates", "Fellow leaders"]
+    },
+    "ENTP": {
+      "motivations": ["Innovation", "Spontaneity", "Intellectual stimulation"],
+      "destinations": ["Tech hubs", "Creative cities", "Emerging destinations"],
+      "activities": [
+        "Startup tours",
+        "Innovation labs",
+        "Debates",
+        "Brainstorming sessions"
+      ],
+      "planningStyle": "Flexible framework with room for spontaneity",
+      "budgetApproach": "Strategic spending on unique experiences",
+      "accommodationStyle": "Boutique hotels and creative spaces",
+      "travelCompanions": ["Fellow innovators", "Diverse groups"]
+    },
+    "INTJ": {
+      "motivations": [
+        "Independence",
+        "Deep exploration",
+        "Knowledge acquisition"
+      ],
+      "destinations": ["Historical sites", "Museums", "Architectural wonders"],
+      "activities": [
+        "Research",
+        "Self-guided tours",
+        "Photography",
+        "Learning"
+      ],
+      "planningStyle": "Meticulously researched and well-structured",
+      "budgetApproach": "Value-focused with strategic investments",
+      "accommodationStyle": "Quality over luxury, privacy important",
+      "travelCompanions": [
+        "Solo travel",
+        "Close friends",
+        "Like-minded individuals"
+      ]
+    },
+    "INTP": {
+      "motivations": ["Curiosity", "Analysis", "Unconventional experiences"],
+      "destinations": [
+        "Off-beat locations",
+        "Research facilities",
+        "Natural phenomena"
+      ],
+      "activities": ["Research", "Analysis", "Exploration", "Learning"],
+      "planningStyle": "Loose structure with flexibility for discoveries",
+      "budgetApproach": "Economical with splurges on interesting finds",
+      "accommodationStyle": "Simple but comfortable, location matters",
+      "travelCompanions": ["Solo travel", "Fellow thinkers", "Small groups"]
+    },
+    "ENFJ": {
+      "motivations": [
+        "Cultural immersion",
+        "People connection",
+        "Meaningful impact"
+      ],
+      "destinations": [
+        "Cultural centers",
+        "Community projects",
+        "Diverse societies"
+      ],
+      "activities": [
+        "Cultural exchange",
+        "Volunteer work",
+        "Local interactions",
+        "Group activities"
+      ],
+      "planningStyle": "Collaborative planning with group input",
+      "budgetApproach": "Balanced with emphasis on experiences",
+      "accommodationStyle": "Local homestays and cultural accommodation",
+      "travelCompanions": [
+        "Large groups",
+        "Cultural exchange partners",
+        "Community groups"
+      ]
+    },
+    "ENFP": {
+      "motivations": ["Authenticity", "Creativity", "Human connection"],
+      "destinations": [
+        "Vibrant cities",
+        "Artistic communities",
+        "Festival locations"
+      ],
+      "activities": [
+        "Festivals",
+        "Art scenes",
+        "Local culture",
+        "Adventure sports"
+      ],
+      "planningStyle": "Spontaneous with some loose planning",
+      "budgetApproach": "Experience-focused spending",
+      "accommodationStyle": "Unique and authentic places",
+      "travelCompanions": ["Friends", "Fellow adventurers", "Local communities"]
+    },
+    "INFJ": {
+      "motivations": [
+        "Meaningful journeys",
+        "Personal growth",
+        "Spiritual connection"
+      ],
+      "destinations": [
+        "Spiritual sites",
+        "Natural retreats",
+        "Meaningful locations"
+      ],
+      "activities": [
+        "Meditation",
+        "Reflection",
+        "Spiritual practices",
+        "Nature connection"
+      ],
+      "planningStyle": "Thoughtful planning with personal meaning",
+      "budgetApproach": "Mindful spending on meaningful experiences",
+      "accommodationStyle": "Peaceful and reflective environments",
+      "travelCompanions": [
+        "Solo travel",
+        "Close companions",
+        "Spiritual groups"
+      ]
+    },
+    "INFP": {
+      "motivations": [
+        "Authentic experiences",
+        "Personal values",
+        "Creative expression"
+      ],
+      "destinations": [
+        "Artistic communities",
+        "Natural beauty",
+        "Authentic cultures"
+      ],
+      "activities": [
+        "Creative pursuits",
+        "Local culture",
+        "Photography",
+        "Writing"
+      ],
+      "planningStyle": "Flexible with room for inspiration",
+      "budgetApproach": "Value-conscious with splurges on meaningful experiences",
+      "accommodationStyle": "Unique and characterful places",
+      "travelCompanions": [
+        "Solo travel",
+        "Like-minded friends",
+        "Creative communities"
+      ]
+    },
+    "ESTJ": {
+      "motivations": [
+        "Efficient travel",
+        "Structured experiences",
+        "Practical value"
+      ],
+      "destinations": [
+        "Established destinations",
+        "Business centers",
+        "Well-organized locations"
+      ],
+      "activities": [
+        "Guided tours",
+        "Business meetings",
+        "Cultural sites",
+        "Networking"
+      ],
+      "planningStyle": "Detailed and well-organized itineraries",
+      "budgetApproach": "Value-focused with clear ROI",
+      "accommodationStyle": "Reliable and well-established hotels",
+      "travelCompanions": ["Colleagues", "Family", "Organized groups"]
+    },
+    "ESTP": {
+      "motivations": ["Adventure", "Excitement", "Immediate experiences"],
+      "destinations": [
+        "Action-packed locations",
+        "Adventure spots",
+        "Entertainment centers"
+      ],
+      "activities": [
+        "Adventure sports",
+        "Nightlife",
+        "Spontaneous activities",
+        "Social events"
+      ],
+      "planningStyle": "Minimal planning, maximum flexibility",
+      "budgetApproach": "Spend on experiences in the moment",
+      "accommodationStyle": "Convenient and social environments",
+      "travelCompanions": ["Friends", "Adventure buddies", "Social groups"]
+    },
+    "ISTJ": {
+      "motivations": [
+        "Reliable experiences",
+        "Traditional destinations",
+        "Planned activities"
+      ],
+      "destinations": [
+        "Historical sites",
+        "Traditional destinations",
+        "Well-established locations"
+      ],
+      "activities": [
+        "Guided tours",
+        "Museums",
+        "Cultural sites",
+        "Historical exploration"
+      ],
+      "planningStyle": "Comprehensive and detailed planning",
+      "budgetApproach": "Conservative and well-planned spending",
+      "accommodationStyle": "Reliable and traditional accommodations",
+      "travelCompanions": ["Family", "Close friends", "Familiar groups"]
+    },
+    "ISTP": {
+      "motivations": [
+        "Independent exploration",
+        "Practical experiences",
+        "Flexible adventures"
+      ],
+      "destinations": [
+        "Natural areas",
+        "Practical destinations",
+        "Adventure locations"
+      ],
+      "activities": [
+        "Outdoor activities",
+        "Hands-on experiences",
+        "Equipment testing",
+        "Solo exploration"
+      ],
+      "planningStyle": "Minimal planning with practical preparations",
+      "budgetApproach": "Practical spending on useful experiences",
+      "accommodationStyle": "Functional and independent options",
+      "travelCompanions": [
+        "Solo travel",
+        "Adventure partners",
+        "Small practical groups"
+      ]
+    },
+    "ESFJ": {
+      "motivations": [
+        "Social connection",
+        "Group harmony",
+        "Service to others"
+      ],
+      "destinations": [
+        "Popular destinations",
+        "Family-friendly locations",
+        "Community-oriented places"
+      ],
+      "activities": [
+        "Group activities",
+        "Cultural exchange",
+        "Family experiences",
+        "Social events"
+      ],
+      "planningStyle": "Collaborative planning considering everyone's needs",
+      "budgetApproach": "Balanced spending with group considerations",
+      "accommodationStyle": "Comfortable and social environments",
+      "travelCompanions": ["Family", "Large groups", "Community members"]
+    },
+    "ESFP": {
+      "motivations": [
+        "Fun experiences",
+        "Social interaction",
+        "Spontaneous adventures"
+      ],
+      "destinations": [
+        "Vibrant cities",
+        "Entertainment centers",
+        "Social hotspots"
+      ],
+      "activities": ["Entertainment", "Social events", "Dancing", "Festivals"],
+      "planningStyle": "Spontaneous with some basic arrangements",
+      "budgetApproach": "Experience-focused spending on fun activities",
+      "accommodationStyle": "Social and entertaining environments",
+      "travelCompanions": ["Friends", "Party groups", "Social circles"]
+    },
+    "ISFJ": {
+      "motivations": [
+        "Comfortable experiences",
+        "Service to others",
+        "Traditional values"
+      ],
+      "destinations": [
+        "Safe destinations",
+        "Family-oriented locations",
+        "Culturally significant places"
+      ],
+      "activities": [
+        "Cultural learning",
+        "Family activities",
+        "Service projects",
+        "Traditional experiences"
+      ],
+      "planningStyle": "Careful and considerate planning",
+      "budgetApproach": "Conservative spending with focus on others",
+      "accommodationStyle": "Comfortable and safe environments",
+      "travelCompanions": ["Family", "Close friends", "Service groups"]
+    },
+    "ISFP": {
+      "motivations": [
+        "Aesthetic experiences",
+        "Personal values",
+        "Gentle adventures"
+      ],
+      "destinations": [
+        "Beautiful landscapes",
+        "Artistic locations",
+        "Peaceful environments"
+      ],
+      "activities": [
+        "Art appreciation",
+        "Nature activities",
+        "Photography",
+        "Quiet exploration"
+      ],
+      "planningStyle": "Flexible planning with room for beauty",
+      "budgetApproach": "Value-conscious with splurges on beauty",
+      "accommodationStyle": "Beautiful and peaceful environments",
+      "travelCompanions": [
+        "Solo travel",
+        "Close companions",
+        "Like-minded individuals"
+      ]
+    }
+  },
+  "share": {
+    "title": "Share Your Travel Style",
+    "subtitle": "Let your friends discover their MBTI travel personality too!",
+    "buttons": {
+      "sharing": "Sharing...",
+      "shareResults": "Share Results",
+      "copyLink": "Copy Link"
+    },
+    "feedback": {
+      "linkCopied": "✅ Link copied to clipboard!",
+      "shareSuccess": "✅ Shared successfully!",
+      "shareFailed": "❌ Sharing failed. Please try again."
+    },
+    "privacy": "Your shared link includes your personality type results but no personal data",
+    "data": {
+      "title": "MBTI Travel Style: {{code}} - {{name}}",
+      "text": "🧳 I'm a {{code}} ({{name}}) traveler! Discover your MBTI travel style and find out what kind of adventurer you are! ✈️"
+    }
+  },
+  "common": {
+    "goHome": "Go Home"
+  }
+}

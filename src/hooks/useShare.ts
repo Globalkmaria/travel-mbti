@@ -11,6 +11,7 @@ import {
   getOptimalSharingMethod,
   validateShareData,
 } from "../utils/shareUtils";
+import { useLanguage } from "./useLanguage";
 
 interface UseShareReturn {
   // Core sharing functions
@@ -35,6 +36,7 @@ interface UseShareReturn {
  * Provides Web Share API with clipboard fallback and comprehensive error handling
  */
 export function useShare(): UseShareReturn {
+  const { t } = useLanguage();
   const [isSharing, setIsSharing] = useState(false);
   const [lastShareResult, setLastShareResult] = useState<ShareResult | null>(
     null
@@ -55,9 +57,12 @@ export function useShare(): UseShareReturn {
   /**
    * Generates share preview data without actually sharing
    */
-  const generateSharePreview = useCallback((mbtiType: MBTIType): ShareData => {
-    return createShareData(mbtiType);
-  }, []);
+  const generateSharePreview = useCallback(
+    (mbtiType: MBTIType): ShareData => {
+      return createShareData(mbtiType, t);
+    },
+    [t]
+  );
 
   /**
    * Main sharing function with automatic method selection
@@ -81,7 +86,7 @@ export function useShare(): UseShareReturn {
       setLastShareResult(null);
 
       try {
-        const data = createShareData(mbtiType);
+        const data = createShareData(mbtiType, t);
         setShareData(data);
 
         // Validate share data
@@ -125,7 +130,7 @@ export function useShare(): UseShareReturn {
         setIsSharing(false);
       }
     },
-    [optimalMethod, canUseWebShare]
+    [optimalMethod, canUseWebShare, t]
   );
 
   /**
