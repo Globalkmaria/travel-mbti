@@ -1,4 +1,6 @@
-![Cursor.ai](https://cursor.com/agents) + ![Shrimp Task Manger](https://cjo4m06.github.io/mcp-shrimp-task-manager/) Vibe code Project
+Live Link : https://travel-mbti-hello.netlify.app
+
+[Cursor.ai](https://cursor.com/agents) + [Shrimp Task Manger](https://cjo4m06.github.io/mcp-shrimp-task-manager/) Vibe code Project
 
 # 🧳 MBTI Travel Style Analysis
 
