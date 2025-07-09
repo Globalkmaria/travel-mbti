@@ -57,7 +57,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50"
+      className="min-h-screen bg-gradient-to-br from-primary-50 to-accent-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -70,7 +70,7 @@ export const HomePage: React.FC = () => {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             {t("home.hero.title")}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
               {" "}
               {t("home.hero.titleHighlight")}
             </span>
