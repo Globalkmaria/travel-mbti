@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Button, Card, LoadingSpinner } from "../components/ui";
 import {
   ResultCard,
-  CharacterDisplay,
   TravelRecommendations,
+  CharacterDisplay,
   ShareSection,
 } from "../components/results";
-import { Button, Card, LoadingSpinner } from "../components/ui";
 import { getMBTIType } from "../data";
-import type { MBTIType, DimensionScore, MBTICode } from "../types";
+import type { MBTICode, DimensionScore } from "../types";
 
-// Result data interface from MBTI calculation
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      duration: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+};
+
+// Local interface for component state
 interface MBTIResult {
   typeCode: MBTICode;
   scores: {
@@ -26,107 +47,118 @@ interface MBTIResult {
 
 /**
  * ResultsPage Component
- * Displays comprehensive MBTI test results with personality type, travel recommendations,
- * and sharing functionality
+ * Displays MBTI test results with character, analysis, and sharing options
+ * Supports both personal results and shared results via URL parameters
  */
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
   const [result, setResult] = useState<MBTIResult | null>(null);
-  const [mbtiType, setMbtiType] = useState<MBTIType | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSharedResult, setIsSharedResult] = useState(false);
 
-  // Load result from sessionStorage or URL parameters on component mount
+  // Helper function to clear all test data
+  const clearTestData = () => {
+    // Clear sessionStorage result
+    try {
+      sessionStorage.removeItem("mbti-result");
+    } catch (error) {
+      console.warn("Failed to clear sessionStorage:", error);
+    }
+
+    // Clear localStorage test state
+    try {
+      localStorage.removeItem("mbti-test-state");
+    } catch (error) {
+      console.warn("Failed to clear localStorage:", error);
+    }
+  };
+
+  // Load result from sessionStorage or URL parameter
   useEffect(() => {
     const loadResult = () => {
       try {
-        // Check if this is a shared result from URL parameters
-        const sharedTypeCode = searchParams.get("type");
+        setIsLoading(true);
+        setError(null);
 
-        if (sharedTypeCode) {
-          // Load shared result from URL parameter
-          const typeData = getMBTIType(sharedTypeCode as MBTICode);
-
-          if (!typeData) {
-            throw new Error("Invalid MBTI type code in shared link");
-          }
-
-          // Create a basic result object for shared results
-          const sharedResult: MBTIResult = {
-            typeCode: sharedTypeCode as MBTICode,
-            scores: { EI: 0, SN: 0, TF: 0, JP: 0 }, // Placeholder scores
-            confidence: 85, // Default confidence for shared results
-            dimensionScores: [], // Will be populated if needed
-          };
-
-          setResult(sharedResult);
-          setMbtiType(typeData);
+        // Check if this is a shared result (type parameter in URL)
+        const typeFromUrl = searchParams.get("type");
+        if (typeFromUrl) {
           setIsSharedResult(true);
+          const mbtiType = getMBTIType(typeFromUrl as MBTICode);
+          if (mbtiType) {
+            // Create a mock result for shared type
+            const mockResult: MBTIResult = {
+              typeCode: typeFromUrl as MBTICode,
+              scores: { EI: 0.6, SN: 0.7, TF: 0.5, JP: 0.8 },
+              confidence: 85,
+              dimensionScores: [
+                {
+                  dimension: "EI",
+                  score: 0.6,
+                  preference: "E",
+                  strength: "moderate",
+                },
+                {
+                  dimension: "SN",
+                  score: 0.7,
+                  preference: "N",
+                  strength: "clear",
+                },
+                {
+                  dimension: "TF",
+                  score: 0.5,
+                  preference: "T",
+                  strength: "slight",
+                },
+                {
+                  dimension: "JP",
+                  score: 0.8,
+                  preference: "P",
+                  strength: "very clear",
+                },
+              ],
+            };
+            setResult(mockResult);
+          } else {
+            setError("Invalid personality type in shared link.");
+          }
+          setIsLoading(false);
           return;
         }
 
-        // Load from sessionStorage for regular test results
-        const storedResult = sessionStorage.getItem("mbti-result");
-
-        if (!storedResult) {
-          // No result found, redirect to test
-          navigate("/test");
-          return;
-        }
-
-        const parsedResult: MBTIResult = JSON.parse(storedResult);
-        const typeData = getMBTIType(parsedResult.typeCode);
-
-        if (!typeData) {
-          throw new Error("Invalid MBTI type code");
-        }
-
-        setResult(parsedResult);
-        setMbtiType(typeData);
+        // Load from sessionStorage for regular results
         setIsSharedResult(false);
+        const storedResult = sessionStorage.getItem("mbti-result");
+        if (storedResult) {
+          const parsedResult = JSON.parse(storedResult) as MBTIResult;
+          setResult(parsedResult);
+        } else {
+          setError(
+            "No test results found. Please complete the personality test first."
+          );
+        }
       } catch (err) {
-        console.error("Error loading result:", err);
-        setError("Failed to load test results. Please retake the test.");
+        console.error("Error loading results:", err);
+        setError("Failed to load your results. Please try again.");
       } finally {
         setIsLoading(false);
       }
     };
 
     loadResult();
-  }, [navigate, searchParams]);
+  }, [searchParams]);
 
   // Handle retaking the test
   const handleRetakeTest = () => {
-    // Clear stored result
-    sessionStorage.removeItem("mbti-result");
+    clearTestData();
     navigate("/test");
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0.0, 0.2, 1] as const,
-      },
-    },
-  };
+  // Get the MBTI type object for components
+  const mbtiType = result ? getMBTIType(result.typeCode) : null;
 
   // Loading state
   if (isLoading) {
@@ -171,7 +203,7 @@ export const ResultsPage: React.FC = () => {
               "We couldn't find your test results. Please take the test again."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button variant="primary" onClick={() => navigate("/test")}>
+            <Button variant="primary" onClick={handleRetakeTest}>
               Take Test Again
             </Button>
             <Button variant="outline" onClick={() => navigate("/")}>

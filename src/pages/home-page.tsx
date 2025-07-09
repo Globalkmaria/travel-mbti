@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button, Card, CardContent } from "../components/ui";
 
@@ -9,6 +9,28 @@ import { Button, Card, CardContent } from "../components/ui";
  * Features responsive hero section and smooth animations
  */
 export const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  // Clear all test data and start fresh test
+  const handleStartTest = () => {
+    // Clear localStorage test state
+    try {
+      localStorage.removeItem("mbti-test-state");
+    } catch (error) {
+      console.warn("Failed to clear localStorage:", error);
+    }
+
+    // Clear sessionStorage result
+    try {
+      sessionStorage.removeItem("mbti-result");
+    } catch (error) {
+      console.warn("Failed to clear sessionStorage:", error);
+    }
+
+    // Navigate to test page
+    navigate("/test");
+  };
+
   // Animation variants for staggered reveals
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -91,14 +113,13 @@ export const HomePage: React.FC = () => {
 
         {/* CTA Section */}
         <motion.div variants={itemVariants} className="mb-16">
-          <Link to="/test">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-            >
-              🎯 Start Your Journey
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            onClick={handleStartTest}
+            className="text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            🎯 Start Your Journey
+          </Button>
           <p className="text-gray-500 mt-4 text-sm">
             Takes 5-10 minutes • 18 questions • Free & private
           </p>
@@ -296,14 +317,13 @@ export const HomePage: React.FC = () => {
               Join thousands of travelers who have unlocked their
               personality-based travel recommendations.
             </p>
-            <Link to="/test">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-              >
-                🚀 Begin Your Analysis
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              onClick={handleStartTest}
+              className="text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+            >
+              🚀 Begin Your Analysis
+            </Button>
           </motion.div>
         </div>
       </motion.section>
