@@ -15,8 +15,6 @@ import {
 interface UseShareReturn {
   // Core sharing functions
   share: (mbtiType: MBTIType, options?: ShareOptions) => Promise<ShareResult>;
-  shareViaWeb: (mbtiType: MBTIType) => Promise<ShareResult>;
-  shareViaClipboard: (mbtiType: MBTIType) => Promise<ShareResult>;
 
   // Share state
   isSharing: boolean;
@@ -25,7 +23,6 @@ interface UseShareReturn {
 
   // Utility functions
   canUseWebShare: boolean;
-  optimalMethod: "web" | "clipboard";
   generateSharePreview: (mbtiType: MBTIType) => ShareData;
 
   // Error handling
@@ -132,73 +129,6 @@ export function useShare(): UseShareReturn {
   );
 
   /**
-   * Force sharing via Web Share API
-   */
-  const shareViaWeb = useCallback(
-    async (mbtiType: MBTIType): Promise<ShareResult> => {
-      if (!canUseWebShare) {
-        const errorResult: ShareResult = {
-          success: false,
-          platform: "web",
-          error: "Web Share API not supported",
-        };
-        setLastShareResult(errorResult);
-        return errorResult;
-      }
-
-      setIsSharing(true);
-
-      try {
-        const data = createShareData(mbtiType);
-        const result = await shareViaWebAPI(data);
-        setLastShareResult(result);
-        setShareData(data);
-        return result;
-      } catch (error) {
-        const errorResult: ShareResult = {
-          success: false,
-          platform: "web",
-          error: error instanceof Error ? error.message : "Web share failed",
-        };
-        setLastShareResult(errorResult);
-        return errorResult;
-      } finally {
-        setIsSharing(false);
-      }
-    },
-    [canUseWebShare]
-  );
-
-  /**
-   * Force sharing via clipboard
-   */
-  const shareViaClipboard = useCallback(
-    async (mbtiType: MBTIType): Promise<ShareResult> => {
-      setIsSharing(true);
-
-      try {
-        const data = createShareData(mbtiType);
-        const result = await shareViaClipboardUtil(data);
-        setLastShareResult(result);
-        setShareData(data);
-        return result;
-      } catch (error) {
-        const errorResult: ShareResult = {
-          success: false,
-          platform: "clipboard",
-          error:
-            error instanceof Error ? error.message : "Clipboard share failed",
-        };
-        setLastShareResult(errorResult);
-        return errorResult;
-      } finally {
-        setIsSharing(false);
-      }
-    },
-    []
-  );
-
-  /**
    * Clears the last share result
    */
   const clearLastResult = useCallback(() => {
@@ -208,8 +138,6 @@ export function useShare(): UseShareReturn {
   return {
     // Core sharing functions
     share,
-    shareViaWeb,
-    shareViaClipboard: shareViaClipboard,
 
     // Share state
     isSharing,
@@ -218,7 +146,6 @@ export function useShare(): UseShareReturn {
 
     // Utility functions
     canUseWebShare,
-    optimalMethod,
     generateSharePreview,
 
     // Error handling

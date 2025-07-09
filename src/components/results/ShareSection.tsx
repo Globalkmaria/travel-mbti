@@ -15,12 +15,9 @@ interface ShareSectionProps {
 export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
   const {
     share,
-    shareViaWeb,
-    shareViaClipboard,
     isSharing,
     lastShareResult,
     canUseWebShare,
-    optimalMethod,
     generateSharePreview,
     clearLastResult,
     isShareSupported,
@@ -58,19 +55,9 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
     }
   }, [lastShareResult, clearLastResult]);
 
-  // Main share handler with optimal method selection
+  // Main share handler with smart method selection
   const handleShare = async () => {
     await share(mbtiType);
-  };
-
-  // Force web share
-  const handleWebShare = async () => {
-    await shareViaWeb(mbtiType);
-  };
-
-  // Force clipboard share
-  const handleClipboardShare = async () => {
-    await shareViaClipboard(mbtiType);
   };
 
   // Generate share preview for display
@@ -117,58 +104,24 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
         </div>
       </div>
 
-      {/* Share Buttons */}
-      <div className="space-y-3">
-        {/* Primary share button - uses optimal method */}
-        <Button
-          onClick={handleShare}
-          disabled={isSharing}
-          loading={isSharing}
-          className="w-full"
-          size="lg"
-          aria-label={`Share your ${mbtiType.code} travel style`}
-        >
-          {isSharing ? (
-            "Sharing..."
-          ) : (
-            <>
-              <span className="mr-2">🔗</span>
-              {canUseWebShare && optimalMethod === "web"
-                ? "Share Results"
-                : "Copy Link"}
-            </>
-          )}
-        </Button>
-
-        {/* Alternative sharing methods */}
-        <div className="flex space-x-3">
-          {canUseWebShare && (
-            <Button
-              variant="outline"
-              onClick={handleWebShare}
-              disabled={isSharing}
-              className="flex-1"
-              size="md"
-              aria-label="Share via system share dialog"
-            >
-              <span className="mr-2">📱</span>
-              Share
-            </Button>
-          )}
-
-          <Button
-            variant="outline"
-            onClick={handleClipboardShare}
-            disabled={isSharing}
-            className="flex-1"
-            size="md"
-            aria-label="Copy link to clipboard"
-          >
-            <span className="mr-2">📋</span>
-            Copy Link
-          </Button>
-        </div>
-      </div>
+      {/* Single Smart Share Button */}
+      <Button
+        onClick={handleShare}
+        disabled={isSharing}
+        loading={isSharing}
+        className="w-full"
+        size="lg"
+        aria-label={`Share your ${mbtiType.code} travel style`}
+      >
+        {isSharing ? (
+          "Sharing..."
+        ) : (
+          <>
+            <span className="mr-2">{canUseWebShare ? "📱" : "📋"}</span>
+            {canUseWebShare ? "Share Results" : "Copy Link"}
+          </>
+        )}
+      </Button>
 
       {/* Feedback Message */}
       <AnimatePresence>
