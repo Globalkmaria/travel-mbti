@@ -9,12 +9,6 @@ export const LanguageSwitcher: React.FC = () => {
     setLanguage(language === "en" ? "ko" : "en");
   };
 
-  const forceEnglish = () => {
-    setLanguage("en");
-    // Also clear localStorage to ensure clean state
-    localStorage.setItem("mbti-language", "en");
-  };
-
   return (
     <div className="fixed top-4 right-4 z-50 flex gap-2">
       <Button
@@ -25,21 +19,6 @@ export const LanguageSwitcher: React.FC = () => {
       >
         {language === "en" ? "한국어" : "English"}
       </Button>
-
-      {/* Debug button - remove in production */}
-      <Button
-        variant="secondary"
-        size="sm"
-        onClick={forceEnglish}
-        className="text-xs"
-      >
-        EN
-      </Button>
-
-      {/* Debug indicator */}
-      <div className="bg-black text-white px-2 py-1 rounded text-xs">
-        Current: {language}
-      </div>
     </div>
   );
 };
