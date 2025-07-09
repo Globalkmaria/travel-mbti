@@ -30,6 +30,40 @@ export const TestPage: React.FC = () => {
     resetTest,
   } = useMBTITest();
 
+  // Handle test submission
+  const handleSubmit = React.useCallback(() => {
+    try {
+      setIsSubmitting(true);
+      const result = calculateResult();
+
+      // Store result in sessionStorage for the results page
+      sessionStorage.setItem("mbti-result", JSON.stringify(result));
+
+      // Navigate to results page
+      navigate("/results");
+    } catch (error) {
+      console.error("Error calculating result:", error);
+      // TODO: Show error message to user
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [calculateResult, navigate]);
+
+  // Handle answer selection with auto-submit logic
+  const handleAnswerSelect = React.useCallback(
+    (answerId: string) => {
+      answerQuestion(answerId);
+
+      // Auto-submit if this is the last question
+      if (isLastQuestion) {
+        setTimeout(() => {
+          handleSubmit();
+        }, 800); // Small delay for better UX
+      }
+    },
+    [answerQuestion, isLastQuestion, handleSubmit]
+  );
+
   // Redirect to results when test is completed
   useEffect(() => {
     if (testState.isCompleted && testState.result) {
@@ -88,31 +122,8 @@ export const TestPage: React.FC = () => {
     goToNextQuestion,
     isLastQuestion,
     hasAnsweredCurrentQuestion,
+    handleSubmit,
   ]);
-
-  // Handle answer selection
-  const handleAnswerSelect = (answerId: string) => {
-    answerQuestion(answerId);
-  };
-
-  // Handle test submission
-  const handleSubmit = async () => {
-    try {
-      setIsSubmitting(true);
-      const result = await calculateResult();
-
-      // Store result in sessionStorage for the results page
-      sessionStorage.setItem("mbti-result", JSON.stringify(result));
-
-      // Navigate to results page
-      navigate("/results");
-    } catch (error) {
-      console.error("Error calculating result:", error);
-      // TODO: Show error message to user
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   // Handle navigation
   const handleNavigation = {
