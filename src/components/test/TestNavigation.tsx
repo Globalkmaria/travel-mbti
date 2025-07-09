@@ -104,20 +104,22 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
             className="min-w-[120px]"
             aria-label="Go to previous question"
           >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Previous
+            <div className="flex items-center">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Previous
+            </div>
           </Button>
         </motion.div>
 
@@ -167,7 +169,7 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
                   Submitting...
                 </>
               ) : (
-                <>
+                <div className="flex items-center justify-end">
                   Submit Test
                   <svg
                     className="w-4 h-4 ml-2"
@@ -182,7 +184,7 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                </>
+                </div>
               )}
             </Button>
           ) : (
@@ -196,20 +198,22 @@ export const TestNavigation: React.FC<TestNavigationProps> = ({
               className="min-w-[120px]"
               aria-label="Go to next question"
             >
-              Next
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <div className="flex items-center justify-end">
+                Next
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Button>
           )}
         </motion.div>
