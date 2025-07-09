@@ -12,7 +12,7 @@ const progressSizes = {
 
 // Progress bar color variants
 const progressColors = {
-  primary: "bg-primary",
+  primary: "bg-primary-500",
   secondary: "bg-gray-500",
   success: "bg-green-500",
   warning: "bg-yellow-500",
@@ -132,7 +132,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
 
   // Get color class and convert to stroke color
   const colorMap = {
-    primary: "#3b82f6", // blue-500
+    primary: "#3b82f6", // primary-500
     secondary: "#6b7280", // gray-500
     success: "#10b981", // green-500
     warning: "#f59e0b", // yellow-500
