@@ -123,7 +123,7 @@ export function ShareSection({ mbtiType, className = "" }: ShareSectionProps) {
         onClick={handleShare}
         disabled={isSharing}
         loading={isSharing}
-        className="w-full"
+        className="w-full text-gray-900 dark:text-white"
         size="lg"
         aria-label={`Share your ${mbtiType.code} travel style`}
       >
